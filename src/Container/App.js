@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import CardList from '../Component/CardList';
 import SearchBox from '../Component/SearchBox';
 import Scroll from '../Component/Scroll';
+import ErrorBoundaries from '../Component/ErrorBoundaries';
 import './App.css';
 
 class App extends Component {
-  //
+  //We run the constructor then the render
   constructor() {
     super()
     this.state = {
@@ -16,6 +17,7 @@ class App extends Component {
     }
   }
 
+  //This will end up changing the states so render runs again.
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response=> response.json())
@@ -38,7 +40,9 @@ class App extends Component {
           <h1 className='f1'>RoboFriends</h1>
           <SearchBox searchChange={this.onSearchChange}/>
           <Scroll>
-            <CardList robots={filteredRobots} />
+            <ErrorBoundaries>
+              <CardList robots={filteredRobots} />
+            </ErrorBoundaries>
           </Scroll>
         </div>
       );
