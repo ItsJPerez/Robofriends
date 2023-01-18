@@ -21,10 +21,11 @@ class ErrorBoundaries extends Component{
         return this.props.children
     }
 }
-
-
-//With this errorBoundary component if anything in the CardList fails it will catch it and display our error message
 export default ErrorBoundaries;
+
+//With errorBoundary, if anything in the CardList fails it will catch it and display our error message
+//They are useful for when you put your app into production.
+
 
 
 
